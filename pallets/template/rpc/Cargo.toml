@@ -1,0 +1,13 @@
+[package]
+name = "pallet-minimal-template-rpc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+jsonrpsee = { workspace = true, features = ["server", "macros"] }
+pallet-minimal-template-runtime-api = { workspace = true, default-features = false }
+polkadot-sdk = { workspace = true, default-features = false }
+
+[features]
+default = ["std"]
+std = ["pallet-minimal-template-runtime-api/std", "polkadot-sdk/std"]
