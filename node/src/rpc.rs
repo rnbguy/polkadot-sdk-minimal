@@ -54,13 +54,16 @@ where
         + 'static,
     C::Api: sp_block_builder::BlockBuilder<OpaqueBlock>,
     C::Api: substrate_frame_rpc_system::AccountNonceApi<OpaqueBlock, AccountId, Nonce>,
+    C::Api: pallet_minimal_template_runtime_api::PalletMinimalTemplateApi<OpaqueBlock>,
     P: TransactionPool + 'static,
 {
+    use pallet_minimal_template_rpc::{PalletMinimalTemplate, PalletMinimalTemplateApiServer};
     use polkadot_sdk::substrate_frame_rpc_system::{System, SystemApiServer};
     let mut module = RpcModule::new(());
     let FullDeps { client, pool } = deps;
 
     module.merge(System::new(client.clone(), pool.clone()).into_rpc())?;
+    module.merge(PalletMinimalTemplate::new(client.clone()).into_rpc())?;
 
     Ok(module)
 }
