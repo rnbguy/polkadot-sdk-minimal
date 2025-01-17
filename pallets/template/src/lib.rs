@@ -60,6 +60,7 @@ pub mod pallet {
 
     /// Storage for the current value of the counter.
     #[pallet::storage]
+    #[pallet::getter(fn get_value)]
     pub type CounterValue<T> = StorageValue<_, u32>;
 
     /// Storage map to track the number of interactions performed by each account.
