@@ -290,6 +290,12 @@ impl_runtime_apis! {
             vec![]
         }
     }
+
+    impl pallet_minimal_template_runtime_api::PalletMinimalTemplateApi<Block> for Runtime {
+        fn get_value() -> u32 {
+            Template::get_value().unwrap_or(0)
+        }
+    }
 }
 
 /// Some re-exports that the node side code needs to know. Some are useful in this context as well.
