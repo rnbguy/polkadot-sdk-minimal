@@ -159,8 +159,16 @@ impl pallet_transaction_payment::Config for Runtime {
     type LengthToFee = FixedFee<1, <Self as pallet_balances::Config>::Balance>;
 }
 
+// Define counter max value runtime constant
+parameter_types! {
+    pub const CounterMaxValue: u32 = 100;
+}
+
 // Implements the types required for the template pallet.
-impl pallet_minimal_template::Config for Runtime {}
+impl pallet_minimal_template::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type CounterMaxValue = CounterMaxValue;
+}
 
 type Block = frame::runtime::types_common::BlockOf<Runtime, SignedExtra>;
 type Header = HeaderFor<Runtime>;
