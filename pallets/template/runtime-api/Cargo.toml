@@ -1,0 +1,11 @@
+[package]
+name = "pallet-minimal-template-runtime-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+polkadot-sdk = { workspace = true, default-features = false }
+
+[features]
+default = ["std"]
+std = ["polkadot-sdk/std"]
